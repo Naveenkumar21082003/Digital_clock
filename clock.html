@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+    <link rel="stylesheet" href="clock1.css" type="text/css">
+</head>
+<body>
+    <div class="clock">
+        <span id="hr">00</span>
+        <span>:</span>
+        <span id="min">00</span>
+        <span>:</span>
+        <span id="sec">00</span>
+        <span id="ampm">AM</span>
+    </div>
+    <div class="date">
+        <span id="day">Monday</span>
+        <span>,</span>
+        <span id="date">01</span>
+        <span id="month">jan</span>
+        <span id="year">2024</span>
+        </div>
+    <script>
+         let ampm=document.getElementById('ampm')
+        function displayTime(){
+            let displayTime=new Date();
+           let hr= displayTime.getHours();
+           let min= displayTime.getMinutes();
+           let sec= displayTime.getSeconds();
+           let day=displayTime.getDay();
+           let date=displayTime.getDate();
+           let mon=displayTime.getMonth();
+           let yr=displayTime.getFullYear();
+            if(hr>=12 && hr<=23){
+                if(hr==12){
+                    ampm.innerHTML="PM";   
+                }
+                else{
+              hr=hr-12;
+            ampm.innerHTML="PM";
+            }
+         } 
+         else if(hr>=0  && hr<=11){
+            if(hr==0){
+                hr=12;
+                ampm.innerHTML="AM";
+            }else{
+            ampm.innerHTML="AM";}
+           }
+           switch(day){
+                case 0:
+                day="Sunday"
+                break;
+                case 1:
+                day="Monday"
+                break;
+                case 2:
+                day="Tuesday"
+                break;
+                case 3:
+                day="Wednesday"
+                break;
+                case 4:
+                day="Thursday"
+                break;
+                case 5:
+                day="Friday"
+                break;
+                case 6:
+                day="Saturday"
+                break;
+           }
+           switch(mon){
+                case 0:
+                mon="Jan"
+                break;
+                case 1:
+                mon="feb"
+                break;
+                case 2:
+                mon="Mar"
+                break;
+                case 3:
+                mon="Apr"
+                break;
+                case 4:
+                mon="May"
+                break;
+                case 5:
+                mon="Jun"
+                break;
+                case 6:
+                mon="Jul"
+                break;
+                case 7:
+                mon="Aug"
+                break;
+                case 8:
+                mon="Sep"
+                break;
+                case 9:
+                mon="Oct"
+                break;
+                case 10:
+                mon="Nov"
+                break;
+                case 11:
+                mon="Dec"
+           }
+            document.getElementById('hr').innerHTML=padzero(hr);
+            document.getElementById('min').innerHTML=padzero(min);
+            document.getElementById('sec').innerHTML=padzero(sec);
+            document.getElementById('day').innerHTML=day;
+            document.getElementById('date').innerHTML=padzero(date);
+            document.getElementById('month').innerHTML=mon;
+            document.getElementById('year').innerHTML=yr;
+        }
+        setInterval(displayTime,1000)
+        function padzero(num){
+            return (num<10)?"0"+num:num;
+        }
+    </script>
+</body>
+</html>
